@@ -18,7 +18,7 @@ if not os.path.exists('backup-config'):
 
 # Current time and formats it to the North American time of Month, Day, and Year.
 now = datetime.now()
-dt_string = now.strftime("%m-%d-%Y_%H-%M")
+dt_string = now.strftime("%Y-%m-%d_%H-%M")
 
 # Gives us the information we need to connect to Cisco.
 def get_saved_config_c(host, username, password, enable_secret):
