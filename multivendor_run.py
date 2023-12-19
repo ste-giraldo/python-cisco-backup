@@ -107,7 +107,7 @@ def get_saved_config_h(host, username, password,):
     net_connect.enable()
     # Gets the running configuration.
     output = net_connect.send_command("dis current-configuration")
-    # Gets and splits the hostname for the output file name.
+    # Gets and splits the hostname for the output file name. Grep "sysname" from the output of "dis saved-configuration | inc sysname" which include multiple lines.
     hostname = net_connect.send_command("dis saved-configuration | inc sysname")
     sysname_line = [line for line in hostname.split('\n') if "sysname" in line.lower()]
     if sysname_line:
