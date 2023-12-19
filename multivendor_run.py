@@ -109,8 +109,9 @@ def get_saved_config_h(host, username, password,):
     output = net_connect.send_command("dis current-configuration")
     # Gets and splits the hostname for the output file name.
     hostname = net_connect.send_command("dis saved-configuration | inc sysname")
-    hostname = hostname.split()
-    hostname = hostname[1]
+    sysname_line = [line for line in hostname.split('\n') if "sysname" in line.lower()]
+    if sysname_line:
+        hostname = sysname_line[0].split()[1]
     # Creates the file name, which is the hostname, and the date and time.
     fileName = hostname + "_" + dt_string
     # Creates the text file in the backup-config folder with the special name, and writes to it.
